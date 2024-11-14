@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+#include <stdio.h>
 #include "pico/stdlib.h"
 
 // Pico W devices use a GPIO on the WIFI chip for the LED,
@@ -44,10 +45,13 @@ void pico_set_led(bool led_on) {
 int main() {
     int rc = pico_led_init();
     hard_assert(rc == PICO_OK);
+    stdio_init_all();
+
     while (true) {
         pico_set_led(true);
         sleep_ms(LED_DELAY_MS);
         pico_set_led(false);
         sleep_ms(LED_DELAY_MS);
+        printf("Teste UART\n");
     }
 }
